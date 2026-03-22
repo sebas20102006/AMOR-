@@ -3,25 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Amor Por Ti</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Para Mi Niña</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #0f001a;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor {
+    background-color: rgba(25, 0, 40, 0.9);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 0 60px rgba(255, 80, 200, 0.8);
+    max-width: 500px;
+    text-align: center;
+}
+
+.titulo {
+    color: #ff66b3;
+    font-size: 30px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px #ff66b3;
+    animation: parpadear 2s infinite ease-in-out;
+}
+
+.texto {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.contador {
+    color: #00ffff;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 15px #00ffff;
+    margin: 15px 0;
+}
+
+.frase {
+    color: #ffc0cb;
+    font-size: 19px;
+    font-style: italic;
+    text-shadow: 0 0 10px #ffc0cb;
+}
+
+.corazon-flotante {
+    position: absolute;
+    color: #ff66b3;
+    font-size: 20px;
+    text-shadow: 0 0 10px #ff66b3;
+    animation: flotar 5s infinite ease-in-out;
+}
+
+@keyframes parpadear {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes flotar {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
+}
+    </style>
 </head>
 <body>
-    <div class="contenedor-central">
-        <h1 class="titulo-amor">¡ERES MI TODO, MI NIÑA! 🥺💖</h1>
-        <p class="texto-contador">Hemos estado juntos desde hace:</p>
-        <div class="contador">
-            <span class="item-contador" id="dias">0</span>
-            <span class="label">días</span>
-            <span class="item-contador" id="horas">0</span>
-            <span class="label">horas</span>
-            <span class="item-contador" id="minutos">0</span>
-            <span class="label">minutos</span>
-        </div>
-        <p class="frase-final">Y siempre te amaré más que ayer... y menos que mañana 💘</p>
+    <div class="contenedor">
+        <h1 class="titulo">¡ERES MI TODO, MI NIÑA! 🥺💖</h1>
+        <p class="texto">Hemos estado juntos desde hace:</p>
+        <p class="contador" id="contador">0 días, 0 horas, 0 minutos</p>
+        <p class="frase">Y siempre te amaré más que ayer... y menos que mañana 💘</p>
     </div>
-    <div class="fondo-corazones" id="fondo-corazones"></div>
 
-    <script src="script-amor.js"></script>
+    <script>
+// FECHA: 20 DE MAYO DE 2025
+const FECHA_INICIAL = new Date('2025-05-20T00:00:00');
+
+function actualizarTiempo() {
+    const ahora = new Date();
+    const diferencia = ahora - FECHA_INICIAL;
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById('contador').textContent = `${dias} días, ${horas} horas, ${minutos} minutos`;
+}
+
+function crearCorazones() {
+    const corazon = document.createElement('div');
+    corazon.classList.add('corazon-flotante');
+    corazon.textContent = '❤️';
+    
+    corazon.style.left = `${Math.random() * 100}%`;
+    corazon.style.top = '0px';
+    corazon.style.animationDuration = `${3 + Math.random() * 7}s`;
+
+    document.body.appendChild(corazon);
+    setTimeout(() => corazon.remove(), parseFloat(corazon.style.animationDuration) * 1000);
+}
+
+// INICIAR
+actualizarTiempo();
+setInterval(actualizarTiempo, 60000);
+setInterval(crearCorazones, 500);
+    </script>
 </body>
 </html>
