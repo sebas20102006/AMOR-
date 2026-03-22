@@ -2,59 +2,66 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a0b11;
-    color: #fff;
-    overflow: hidden;
-    position: relative;
-}
-
-#arbolCorazones {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.texto-amor {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
+    background-color: #1a0505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    background-color: rgba(26, 11, 17, 0.8);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
 }
 
-.texto-amor h1 {
-    font-size: 2.5rem;
-    color: #e63946;
-    margin-bottom: 15px;
+.contenedor-principal {
+    text-align: center;
+    background-color: rgba(46, 7, 7, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
 }
 
-.texto-amor p {
-    font-size: 1.2rem;
-    color: #f1faee;
+h1 {
+    color: #ff4d4d;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff0000;
+    animation: parpadear 2s ease-in-out infinite;
 }
 
-.texto-amor span {
-    color: #a8dadc;
+.contador {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.contador span {
+    color: #4dd2ff;
     font-weight: bold;
+    text-shadow: 0 0 5px #00ccff;
 }
 
-@media (max-width: 768px) {
-    .texto-amor h1 {
-        font-size: 1.8rem;
-    }
-    .texto-amor p {
-        font-size: 1rem;
-    }
+.arbol-corazones {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.corazon {
+    position: absolute;
+    color: #ff4d4d;
+    font-size: 20px;
+    animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes parpadear {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
