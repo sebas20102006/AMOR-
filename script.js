@@ -1,11 +1,11 @@
-// FECHA FIJA: 20 DE MAYO DE 2025
-const FECHA_INICIO = new Date('2025-05-20T00:00:00');
+// FECHA INICIAL DE TU HISTORIA DE AMOR: 20 DE MAYO DE 2025
+const FECHA_COMIENZO = new Date('2025-05-20T00:00:00');
 
-// ACTUALIZAR CONTADOR
+// FUNCIÓN PARA ACTUALIZAR EL CONTADOR
 function actualizarContador() {
     const ahora = new Date();
-    const diferencia = ahora - FECHA_INICIO;
-    
+    const diferencia = ahora - FECHA_COMIENZO;
+
     const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
     const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
@@ -15,34 +15,31 @@ function actualizarContador() {
     document.getElementById('minutos').textContent = minutos;
 }
 
-// CREAR CORAZONES FLOTANTES
-function crearCorazon() {
-    const zona = document.getElementById('zona-corazones');
+// FUNCIÓN PARA CREAR CORAZONES FLOTANTES
+function crearCorazones() {
+    const contenedor = document.getElementById('fondo-corazones');
     const corazon = document.createElement('div');
-    corazon.classList.add('corazon-flotante');
+    corazon.classList.add('corazon-fondo');
     corazon.textContent = '❤️';
 
-    // POSICIÓN ALEATORIA EN LA PANTALLA
-    const posicionX = Math.random() * 100;
-    // TIEMPO DE ANIMACIÓN ALEATORIO
-    const tiempoAnimacion = 3 + Math.random() * 7;
-    // TAMAÑO ALEATORIO
+    // VALORES ALEATORIOS PARA CADA CORAZÓN
+    const posX = Math.random() * 100;
     const tamano = 15 + Math.random() * 15;
+    const retardo = Math.random() * 3;
 
-    corazon.style.left = `${posicionX}%`;
+    corazon.style.left = `${posX}%`;
     corazon.style.fontSize = `${tamano}px`;
-    corazon.style.animationDuration = `${tiempoAnimacion}s`;
+    corazon.style.animationDelay = `${retardo}s`;
 
-    zona.appendChild(corazon);
+    contenedor.appendChild(corazon);
 
-    // BORRAR EL CORAZÓN DESPUÉS DE SU ANIMACIÓN
+    // ELIMINAR EL CORAZÓN DESPUÉS DE SU ANIMACIÓN
     setTimeout(() => {
         corazon.remove();
-    }, tiempoAnimacion * 1000);
+    }, (retardo + 6) * 1000);
 }
 
 // INICIAR TODO
 actualizarContador();
 setInterval(actualizarContador, 60000);
-// CREAR UN CORAZÓN CADA SEGUNDO
-setInterval(crearCorazon, 1000);
+setInterval(crearCorazones, 300);
